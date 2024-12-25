@@ -36,3 +36,26 @@ stages:
       md5: c7ea3df323b6bd31100cc30253811ceb.dir
       size: 116544
       nfiles: 2
+  gridsearchcv:
+    cmd: python src/models/gridsearch.py
+    deps:
+    - path: data/processed_data
+      hash: md5
+      md5: 29046786a0a6295059aa2845c07d3496.dir
+      size: 295687
+      nfiles: 4
+    - path: data/scaled_data
+      hash: md5
+      md5: c7ea3df323b6bd31100cc30253811ceb.dir
+      size: 116544
+      nfiles: 2
+    - path: src/models/gridsearch.py
+      hash: md5
+      md5: 16908fee10c78d76806c2ee0da50a8d8
+      size: 918
+    outs:
+    - path: models
+      hash: md5
+      md5: 2f2cadd3aed40750858a048e6bad807a.dir
+      size: 93
+      nfiles: 1

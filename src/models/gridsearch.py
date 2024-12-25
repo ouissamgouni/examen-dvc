@@ -1,3 +1,4 @@
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import GridSearchCV
@@ -20,5 +21,8 @@ y_train = np.ravel(y_train)
 
 grid_GBR.fit(X_train_scaled, y_train)
 
-pickle.dump(grid_GBR.best_params_, open("models/best_params.pkl", "wb"))
+output_dir = Path("models")
+output_dir.mkdir(parents=True, exist_ok=True)
+
+pickle.dump(grid_GBR.best_params_, output_dir.joinpath("best_params.pkl").open("wb"))
 print("Model best params saved successfully.")
