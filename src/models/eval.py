@@ -18,5 +18,9 @@ predictions = model.predict(X_test_scaled)
 mean_squared_error = mean_squared_error(y_test, predictions)
 r2_score = r2_score(y_test, predictions)
 metrics = {"scores": { "mean_squared_error": mean_squared_error, "r2_score": r2_score}}
-scores_path = Path("metrics/scores.json")
+
+output_dir = Path("metrics")
+output_dir.mkdir(parents=True, exist_ok=True)
+
+scores_path = output_dir.joinpath("scores.json")
 scores_path.write_text(json.dumps(metrics))

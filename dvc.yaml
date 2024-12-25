@@ -20,4 +20,21 @@ stages:
     - data/scaled_data
     - src/models/gridsearch.py
     outs:
-    - models
+    - models/best_params.pkl
+  train:
+    cmd: python src/models/train.py
+    deps:
+    - data/processed_data
+    - data/scaled_data
+    - src/models/train.py
+    outs:
+    - models/trained_model.joblib
+  eval:
+    cmd: python src/models/eval.py
+    deps:
+    - data/processed_data
+    - data/scaled_data
+    - src/models/eval.py
+    metrics:
+    - metrics/scores.json:
+        cache: false
