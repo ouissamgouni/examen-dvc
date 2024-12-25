@@ -28,7 +28,7 @@ stages:
     - data/scaled_data
     - src/models/train.py
     outs:
-    - models/trained_model.joblib
+    - models/trained_model.pkl
   eval:
     cmd: python src/models/eval.py
     deps:

@@ -73,13 +73,13 @@ stages:
       nfiles: 2
     - path: src/models/train.py
       hash: md5
-      md5: c164c719a68f09b165d48a184117cdd5
-      size: 601
+      md5: a575959bffa218029d718abb6f8a0050
+      size: 626
     outs:
-    - path: models/trained_model.joblib
+    - path: models/trained_model.pkl
       hash: md5
-      md5: 517352b11edd5a1a8f0027ea99cf3df2
-      size: 330073
+      md5: 1ded2335e016a073e43e7830655951d3
+      size: 236140
   eval:
     cmd: python src/models/eval.py
     deps:

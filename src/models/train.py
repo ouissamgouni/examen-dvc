@@ -1,4 +1,4 @@
-import joblib
+from pathlib import Path
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import GradientBoostingRegressor
@@ -16,7 +16,7 @@ GBR = GradientBoostingRegressor(**best_params)
 GBR.fit(X_train_scaled, y_train)
 
 #--Save the trained model to a file
-model_filename = 'models/trained_model.joblib'
-joblib.dump(GBR, model_filename)
+model_filename = Path('models/trained_model.pkl')
+pickle.dump(GBR, model_filename.open('wb'))
 print("Model trained and saved successfully.")
 
