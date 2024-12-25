@@ -4,14 +4,14 @@ import pandas as pd
 from sklearn.model_selection import GridSearchCV
 from sklearn.ensemble import GradientBoostingRegressor
 import pickle
+import yaml
 
 GBR = GradientBoostingRegressor()
 
-parameters = {'learning_rate': [0.01,0.02,0.03],
-                  'subsample'    : [0.9, 0.5, 0.2],
-                  'n_estimators' : [100,500],
-                  'max_depth'    : [4,6,8]
-                 }
+
+with open('src/models/params.yaml', 'r') as f:
+    parameters = yaml.load(f, Loader=yaml.SafeLoader)
+
 
 grid_GBR = GridSearchCV(estimator=GBR, param_grid = parameters, cv = 2, n_jobs=-1,verbose=2)
 

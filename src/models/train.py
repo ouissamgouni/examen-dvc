@@ -5,7 +5,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 import pickle
 
 
-X_train_scaled = np.load('data/scaled_data/X_train_scaled.npy')
+X_train_scaled = np.load('data/processed_data/X_train_scaled.npy')
 y_train = pd.read_csv('data/processed_data/y_train.csv')
 y_train = np.ravel(y_train)
 

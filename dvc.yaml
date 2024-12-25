@@ -1,40 +1,48 @@
 stages:
   prepare:
-    cmd: python src/data/make_dataset.py
+    cmd: python src/data/split.py
     deps:
-    - data/raw_data
-    - src/data/make_dataset.py
+    - data/raw_data/raw.csv
+    - src/data/split.py
     outs:
-    - data/processed_data
-  scale:
-    cmd: python src/data/scaler.py
+    - data/processed_data/X_train.csv
+    - data/processed_data/X_test.csv
+    - data/processed_data/y_train.csv
+    - data/processed_data/y_test.csv
+  normalize:
+    cmd: python src/data/normalize.py
     deps:
-    - data/processed_data
-    - src/data/scaler.py
+    - data/processed_data/X_train.csv
+    - data/processed_data/X_test.csv
+    - src/data/normalize.py
     outs:
-    - data/scaled_data
+    - data/processed_data/X_train_scaled.npy
+    - data/processed_data/X_test_scaled.npy
   gridsearchcv:
     cmd: python src/models/gridsearch.py
     deps:
-    - data/processed_data
-    - data/scaled_data
+    - data/processed_data/X_train_scaled.npy
+    - data/processed_data/y_train.csv
+    - src/models/params.yaml
     - src/models/gridsearch.py
     outs:
     - models/best_params.pkl
   train:
     cmd: python src/models/train.py
     deps:
-    - data/processed_data
-    - data/scaled_data
+    - data/processed_data/X_train_scaled.npy
+    - data/processed_data/y_train.csv
+    - models/best_params.pkl
     - src/models/train.py
     outs:
     - models/trained_model.pkl
-  eval:
-    cmd: python src/models/eval.py
+  evaluate:
+    cmd: python src/models/evaluate.py
     deps:
-    - data/processed_data
-    - data/scaled_data
-    - src/models/eval.py
+    - models/trained_model.pkl
+    - data/processed_data/X_test_scaled.npy
+    - data/processed_data/y_test.csv
+    - src/models/evaluate.py
     metrics:
     - metrics/scores.json:
         cache: false
