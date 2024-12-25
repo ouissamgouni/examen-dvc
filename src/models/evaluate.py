@@ -24,3 +24,7 @@ output_dir.mkdir(parents=True, exist_ok=True)
 
 scores_path = output_dir.joinpath("scores.json")
 scores_path.write_text(json.dumps(metrics))
+
+pred_output_dir = Path("data/predictions")
+pred_output_dir.mkdir(parents=True, exist_ok=True)
+pd.DataFrame(predictions).to_csv(pred_output_dir.joinpath("predictions.csv"), index=False)

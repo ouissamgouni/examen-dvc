@@ -43,6 +43,8 @@ stages:
     - data/processed_data/X_test_scaled.npy
     - data/processed_data/y_test.csv
     - src/models/evaluate.py
+    outs:
+    - data/predictions/predictions.csv
     metrics:
     - metrics/scores.json:
         cache: false
