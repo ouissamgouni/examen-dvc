@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import os
 from pathlib import Path
 
 df = pd.read_csv("data/raw_data/raw.csv")

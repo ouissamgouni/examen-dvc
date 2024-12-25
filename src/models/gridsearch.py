@@ -1,4 +1,3 @@
-from tabnanny import verbose
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import GridSearchCV
@@ -15,16 +14,11 @@ parameters = {'learning_rate': [0.01,0.02,0.03],
 
 grid_GBR = GridSearchCV(estimator=GBR, param_grid = parameters, cv = 2, n_jobs=-1,verbose=2)
 
-X_train_scaled = np.load("data/processed_data/X_train_scaled.npy")
+X_train_scaled = np.load("data/scaled_data/X_train_scaled.npy")
 y_train = pd.read_csv("data/processed_data/y_train.csv")
 y_train = np.ravel(y_train)
 
 grid_GBR.fit(X_train_scaled, y_train)
-
-print(" Results from Grid Search " )
-print("\n The best estimator across ALL searched params:\n",grid_GBR.best_estimator_)
-print("\n The best score across ALL searched params:\n",grid_GBR.best_score_)
-print("\n The best parameters across ALL searched params:\n",grid_GBR.best_params_)
 
 pickle.dump(grid_GBR.best_params_, open("models/best_params.pkl", "wb"))
 print("Model best params saved successfully.")

@@ -6,7 +6,7 @@ from pathlib import Path
 
 from sklearn.metrics import mean_squared_error, r2_score
 
-X_test_scaled = np.load('data/processed_data/X_test_scaled.npy')
+X_test_scaled = np.load('data/scaled_data/X_test_scaled.npy')
 y_train = pd.read_csv('data/processed_data/y_train.csv')
 y_test = pd.read_csv('data/processed_data/y_test.csv')
 y_train = np.ravel(y_train)

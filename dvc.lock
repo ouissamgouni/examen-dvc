@@ -5,16 +5,34 @@ stages:
     deps:
     - path: data/raw_data
       hash: md5
-      md5: 4fee02825bf323e25c57a59d0e94d596.dir
-      size: 333765
-      nfiles: 2
+      md5: 41dee78430cbebe25be9986bbb599d4a.dir
+      size: 333757
+      nfiles: 1
     - path: src/data/make_dataset.py
       hash: md5
-      md5: 9da2556a6a8bc5a954d0f0ae2fb590e2
-      size: 642
+      md5: 211d9ea327fbfb24f64c99de7d70079c
+      size: 632
     outs:
     - path: data/processed_data
       hash: md5
       md5: 29046786a0a6295059aa2845c07d3496.dir
       size: 295687
       nfiles: 4
+  scale:
+    cmd: python src/data/scaler.py
+    deps:
+    - path: data/processed_data
+      hash: md5
+      md5: 29046786a0a6295059aa2845c07d3496.dir
+      size: 295687
+      nfiles: 4
+    - path: src/data/scaler.py
+      hash: md5
+      md5: 068b797679fa3ed80aebf5974333b5bc
+      size: 610
+    outs:
+    - path: data/scaled_data
+      hash: md5
+      md5: c7ea3df323b6bd31100cc30253811ceb.dir
+      size: 116544
+      nfiles: 2
